@@ -32,7 +32,7 @@ public class StartVeicolo {
 				try {
 			    	new ListImplementazione().add(params);
 				} catch (Exception e) {
-					log.error("--------------\nError found :" + e.getMessage() + "\n---------------");
+					log.error("Error found :" + e.getMessage() );
 				}
 				
 			}
