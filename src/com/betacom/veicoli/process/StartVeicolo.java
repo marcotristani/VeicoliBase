@@ -21,7 +21,7 @@ public class StartVeicolo {
 	private static final int POSIZIONECODICEOPERAZIONE = 0;
 
 	public void execute(List<String> input) throws Exception{
-		log.info("Begin StartVeicolo \n---------------------\n");
+		log.info("Begin StartVeicolo");
 		
 		for(String item : input) {
 			String[] params= item.split(",");
