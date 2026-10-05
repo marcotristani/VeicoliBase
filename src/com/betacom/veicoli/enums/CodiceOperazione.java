@@ -4,6 +4,7 @@ public enum CodiceOperazione {
 
 	ADD,
 	LIST, 
+	MODIFY,
 	UNKNOWN;
 	
 	public static CodiceOperazione identificaCodice(String codiceStringa) {
