@@ -2,6 +2,7 @@ package com.betacom.veicoli.singleton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.betacom.veicoli.models.Veicoli;
 
@@ -12,9 +13,11 @@ public class SingleTon {
 	private Integer id = 0;
 	private List<Veicoli> listVeicoli = new ArrayList<Veicoli>();
 	private List<String> listTarghe = new ArrayList<String>();
-	
+		
 	private List<String> listAlim = List.of("benzina","diesel","manuale","gpl","hybrid","metano");
 	private List<String> listCategorie = List.of("strada","fuoristrada","pista");
+	
+	private Map<String, List<String>> listeTipiAccettati =  Map.of("alim", listAlim, "cat", listCategorie);
 	
 	
 	private SingleTon() {
@@ -57,4 +60,11 @@ public class SingleTon {
 	public boolean accettaAlimentazione(String alimentazione) {
 		return listAlim.contains(alimentazione); 
 	}
+	
+	public boolean accettaTipo(String tipo, String daVerificare) {
+		return listeTipiAccettati.get(tipo).contains(daVerificare);
+	}
+	
+	
+	
 }

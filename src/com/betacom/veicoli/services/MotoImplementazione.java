@@ -1,25 +1,25 @@
 package com.betacom.veicoli.services;
 
-import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Map;
 
 import com.betacom.veicoli.exception.AcademyException;
 import com.betacom.veicoli.models.Moto;
-//import com.betacom.veicoli.models.Veicoli;
 import com.betacom.veicoli.singleton.SingleTon;
-import com.betacom.veicoli.utilities.Utilities;
 
-public class MotoImplementazione extends VeicoloAbstract{
 
-	private static final Logger log = LoggerFactory.getLogger(MotoImplementazione.class);
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class MotoImplementazione extends VeicoliMotoreAbstract{
+
+	//private static List<String> paramSpecificiMoto = List.of("targa", "cc");
+
 
 	@Override
 	public void addToList(Map<String, String> map) {
 		try {
-			controlParamsMoto(map);
-			Moto nuovaMoto = new Moto(map.get("tipo"),Integer.parseInt(map.get("ruote")), map.get("alim"), map.get("cat"), map.get("colore"), map.get("marca"),Integer.parseInt(map.get("anno")), map.get("modello"), map.get("targa"), Integer.parseInt(map.get("cc")));
+			Moto nuovaMoto =controlParamsMoto(map);
 	        SingleTon.getInstance().addListVeicoli(nuovaMoto);
 	        log.debug("Aggiungo oggetto a lista. Tipo veicolo : " + nuovaMoto);
 		} catch (Exception e) {
@@ -29,21 +29,26 @@ public class MotoImplementazione extends VeicoloAbstract{
 	}
 	
 	
-	public void controlParamsMoto(Map<String, String> paramsMoto) {
-		super.controlVeicoloBase(paramsMoto);
+	public Moto controlParamsMoto(Map<String, String> paramsMoto) {
+		super.controlVeicoloMotoreBase(paramsMoto);
 		
 		super.verifyRangeRuote(Integer.parseInt(paramsMoto.get("ruote")), 2, 4);
 
 
-		if(!paramsMoto.containsKey("targa"))
-			throw new AcademyException("Targa non caricato");
-    	super.verificaTarga(paramsMoto.get("targa"));
-    	
-    	if(!paramsMoto.containsKey("cc"))
-			throw new AcademyException("Cilindrata non caricata");
-    	new Utilities().verifyConversionStringToInt(paramsMoto.get("cc"));
-
+    	Moto moto =Moto.builder()
+   			 .id(SingleTon.getInstance().incrementId())
+   			 .tipoAlimentazione(paramsMoto.get("alim"))
+   			 .categoria(paramsMoto.get("cat"))
+   			 .colore(paramsMoto.get("colore"))
+   			 .marca(paramsMoto.get("marca"))
+   			 .modello(paramsMoto.get("modello"))
+   			 .annoProduzione(Integer.parseInt(paramsMoto.get("anno")))
+                .numeroRuote(Integer.parseInt(paramsMoto.get("ruote")))
+   	         .targa(paramsMoto.get("targa"))
+   	         .cc(Integer.parseInt(paramsMoto.get("cc")))
+   	         .build();
 		
+    	return moto;
 	}
 
 	

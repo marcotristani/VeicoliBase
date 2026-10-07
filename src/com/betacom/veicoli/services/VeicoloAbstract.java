@@ -1,5 +1,6 @@
 package com.betacom.veicoli.services;
 
+import java.util.List;
 import java.util.Map;
 
 import com.betacom.veicoli.exception.AcademyException;
@@ -7,41 +8,37 @@ import com.betacom.veicoli.singleton.SingleTon;
 import com.betacom.veicoli.utilities.Utilities;
 
 
+
+
 public abstract class VeicoloAbstract{
+	
+	public static final List<String> parametriComuni = List.of("ruote", "alim", "cat", "colore", "marca", "modello", "anno");
 
 	public void addToList(Map<String, String> paramsVeicolo) {
 		
 	}
 	
 	public void controlVeicoloBase(Map<String, String> paramsVeicolo) {
-		if(!paramsVeicolo.containsKey("ruote"))
-			throw new AcademyException("Numero ruote non caricato");
-    	new Utilities().verifyConversionStringToInt(paramsVeicolo.get("ruote"));
 		
+		//Verifico se i parametri sono stati inseriti
+		for(String param : parametriComuni) {
+			if(!paramsVeicolo.containsKey(param))
+				throw new AcademyException("parametro " + param + " non inserito");
+		}
+
+		//verifico i parametri numerici se sono veramente numeri
+	    	new Utilities().verifyConversionStringToInt(paramsVeicolo.get("ruote"));
+	    	new Utilities().verifyConversionStringToInt(paramsVeicolo.get("anno"));
+
+	    //verifico se i valori dei parametri che devono appartenere ad una lista siano giusti
+			verificaTipo("alim",paramsVeicolo.get("alim"));
+			verificaTipo("cat",paramsVeicolo.get("cat"));
+
+		//verifico se l'anno non sia futuro o troppo passato
+	    	new Utilities().verifyAnnoPassato(paramsVeicolo.get("anno"));
+	    	new Utilities().verifyAnnoFuturo(paramsVeicolo.get("anno"));
 		
-		if(!paramsVeicolo.containsKey("alim"))
-			throw new AcademyException("Tipo Alimentazione non caricata");
-		verificaAlimentazione(paramsVeicolo.get("alim"));
-	
-		if(!paramsVeicolo.containsKey("cat"))
-			throw new AcademyException("Categoria non caricato");
-		
-		verificaCategoria(paramsVeicolo.get("cat"));
-		
-		if(!paramsVeicolo.containsKey("colore"))
-			throw new AcademyException("Colore non caricato");
-		
-		if(!paramsVeicolo.containsKey("marca"))
-			throw new AcademyException("Marca non caricata");
-	
-		if(!paramsVeicolo.containsKey("modello"))
-			throw new AcademyException("Modello non caricato");
-	
-		if(!paramsVeicolo.containsKey("anno"))
-			throw new AcademyException("Anno di produzione non caricato");
-    	new Utilities().verifyConversionStringToInt(paramsVeicolo.get("anno"));
-    	new Utilities().verifyAnnoPassato(paramsVeicolo.get("anno"));
-    	new Utilities().verifyAnnoFuturo(paramsVeicolo.get("anno"));
+			
 	}
 	
 	public void verificaAlimentazione(String alimentazione) {
@@ -51,19 +48,13 @@ public abstract class VeicoloAbstract{
 		}
 	}
 	
-	public void verificaCategoria(String categoria) {
-		Boolean verify = SingleTon.getInstance().accettaCategoria(categoria);
+	public void verificaTipo(String tipo, String categoria) {
+		Boolean verify = SingleTon.getInstance().accettaTipo(tipo, categoria);
 		if (!verify) {
 			throw new AcademyException("Categoria non accettata :" + categoria);
 		}
 	}
 	
-	public void verificaTarga(String Targa) {
-		Boolean verify = SingleTon.getInstance().accettaTarga(Targa);
-		if (!verify) {
-			throw new AcademyException("Targa già presente :" + Targa);
-		}
-	}
 	
 	public void verifyRangeRuote(Integer numeroRuote, Integer min, Integer max) {
 		if(!(numeroRuote>= min && numeroRuote<=max))

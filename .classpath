@@ -8,5 +8,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/ACER/Desktop/Academy java betacom/librerie/slf4j-api-2.0.9.jar"/>
 	<classpathentry kind="lib" path="C:/Users/ACER/Desktop/Academy java betacom/librerie/slf4j-simple-2.0.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ACER/Desktop/Academy java betacom/librerie/lombok.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

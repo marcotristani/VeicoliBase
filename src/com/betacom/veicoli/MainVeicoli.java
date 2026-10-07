@@ -3,16 +3,15 @@ package com.betacom.veicoli;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.betacom.veicoli.process.StartVeicolo;
 import com.betacom.veicoli.utilities.Utilities;
 
+import lombok.extern.slf4j.Slf4j;
 
+
+@Slf4j
 public class MainVeicoli {
 	
-	private static final Logger log = LoggerFactory.getLogger(MainVeicoli.class);
 
 	public static void main(String[] args) {
 		List<String> param = new Utilities().readToFile("C:\\Users\\ACER\\Desktop\\Academy java betacom\\progetti eclipse\\fileSystemProve\\paramsVeicoli.txt");

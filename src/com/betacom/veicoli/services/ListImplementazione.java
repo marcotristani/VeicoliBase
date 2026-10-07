@@ -5,16 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.betacom.veicoli.exception.AcademyException;
 import com.betacom.veicoli.models.Veicoli;
 import com.betacom.veicoli.utilities.Utilities;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ListImplementazione {
 	
-	private static final Logger log = LoggerFactory.getLogger(ListImplementazione.class);
+	//private static final Logger log = LoggerFactory.getLogger(ListImplementazione.class);
 
 	private static final int POSIZIONETIPOVEICOLO = 1;
 	public void add(String[] paramsVeicolo) {

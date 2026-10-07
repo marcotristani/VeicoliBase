@@ -1,26 +1,23 @@
 package com.betacom.veicoli.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.SuperBuilder;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@SuperBuilder
 public class Macchina extends Veicoli {
 
-	public Macchina(String tipoVeicolo,Integer numeroRuote, String tipoAlimentazione, String categoria, String colore,
-			String marca, Integer annoProduzione, String modello, String targa, Integer cc, Integer numeroPorte) {
-		
-		super(tipoVeicolo, numeroRuote, tipoAlimentazione, categoria, colore, marca, annoProduzione, modello);
-		this.targa = targa;
-		this.cc = cc;
-		this.numeroPorte = numeroPorte;
-	}
 	private String targa;         //deve essere univoca
 	private Integer cc;           //cilindrata
 	private Integer numeroPorte;
 	
-	
-	public String getTarga() {
-		return targa;
-	}
-	public void setTarga(String targa) {
-		this.targa = targa;
-	}
+
 
 	@Override
 	public String toString() {
@@ -28,16 +25,5 @@ public class Macchina extends Veicoli {
 				+ ", Marca = " + getMarca() +", Modello =  " + getModello() + ", Numero porte = " + getNumeroPorte() + ", Anno produzione = " + getAnnoProduzione()
 				+ ", Targa =  "+getTarga() +", Cilindrata = " + getCc()+ "]";
 	}
-	public Integer getCc() {
-		return cc;
-	}
-	public void setCc(Integer cc) {
-		this.cc = cc;
-	}
-	public Integer getNumeroPorte() {
-		return numeroPorte;
-	}
-	public void setNumeroPorte(Integer numeroPorte) {
-		this.numeroPorte = numeroPorte;
-	}
+	
 }

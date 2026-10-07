@@ -4,19 +4,18 @@ package com.betacom.veicoli.process;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.betacom.veicoli.enums.CodiceOperazione;
 import com.betacom.veicoli.exception.AcademyException;
 import com.betacom.veicoli.services.ListImplementazione;
 import com.betacom.veicoli.singleton.SingleTon;
 
+import lombok.extern.slf4j.Slf4j;
 
 
 
+@Slf4j
 public class StartVeicolo {
-	private static final Logger log = LoggerFactory.getLogger(StartVeicolo.class);
+	//private static final Logger log = LoggerFactory.getLogger(StartVeicolo.class);
 
 	private static final int POSIZIONECODICEOPERAZIONE = 0;
 
