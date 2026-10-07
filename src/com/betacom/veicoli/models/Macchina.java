@@ -15,14 +15,14 @@ public class Macchina extends Veicoli {
 
 	private String targa;         //deve essere univoca
 	private Integer cc;           //cilindrata
-	private Integer numeroPorte;
+	private Integer porte;
 	
 
 
 	@Override
 	public String toString() {
-		return "Macchina [Id = " + getId() + ", Numero ruote = "+ getNumeroRuote() +", Tipo alimentazione = " + getTipoAlimentazione() + ", Categoria = " + getCategoria() + ", Colore = " + getColore()
-				+ ", Marca = " + getMarca() +", Modello =  " + getModello() + ", Numero porte = " + getNumeroPorte() + ", Anno produzione = " + getAnnoProduzione()
+		return "Macchina [Id = " + getId() + ", Numero ruote = "+ getNumeroRuote() +", Tipo alimentazione = " + getAlim() + ", Categoria = " + getCategoria() + ", Colore = " + getColore()
+				+ ", Marca = " + getMarca() +", Modello =  " + getModello() + ", Numero porte = " + getPorte() + ", Anno produzione = " + getAnno()
 				+ ", Targa =  "+getTarga() +", Cilindrata = " + getCc()+ "]";
 	}
 	

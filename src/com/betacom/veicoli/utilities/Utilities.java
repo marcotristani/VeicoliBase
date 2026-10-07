@@ -5,7 +5,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,6 +86,26 @@ public class Utilities {
 
 			return num;
 		
+	}
+	public static boolean isPieghevole(String pieghevole) {
+		
+		Map<String, Boolean> yesOrNot = new HashMap<String, Boolean>();
+		yesOrNot.put("si", true);
+		yesOrNot.put("no", false);
+		if(pieghevole != null) {
+		for(String item:yesOrNot.keySet()) {
+			if(pieghevole.equals(item))
+				return yesOrNot.get(item);
+		}
+		throw new AcademyException("Valore pieghevole non valido: inserire 'si' o 'no'");
+		}else {
+			System.err.println("Valore pieghevole non inserito, settato a falso");
+			return false;
+		}
+	}
+	
+	public static String buildClassName(String param) {
+		return param.substring(0 , 1).toUpperCase()+param.substring(1).toLowerCase()+"Implementazione";
 	}
 	
 }

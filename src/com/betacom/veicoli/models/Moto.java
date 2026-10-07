@@ -18,8 +18,8 @@ public class Moto extends Veicoli{
 	
 	@Override
 	public String toString() {
-		return "Moto [Id = " + getId() + ", Numero ruote = "+ getNumeroRuote() +", Tipo alimentazione = " + getTipoAlimentazione() + ", Categoria = " + getCategoria() + ", Colore = " + getColore()
-				+ ", Marca = " + getMarca() +", Modello =  " + getModello() + ", Anno produzione = " + getAnnoProduzione()
+		return "Moto [Id = " + getId() + ", Numero ruote = "+ getNumeroRuote() +", Tipo alimentazione = " + getAlim() + ", Categoria = " + getCategoria() + ", Colore = " + getColore()
+				+ ", Marca = " + getMarca() +", Modello =  " + getModello() + ", Anno produzione = " + getAnno()
 				+ ", Targa =  "+getTarga() +", Cilindrata = " + getCc()+ "]";
 	}
 }

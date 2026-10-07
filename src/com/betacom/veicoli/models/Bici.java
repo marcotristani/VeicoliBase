@@ -13,19 +13,19 @@ import lombok.SuperBuilder;
 @SuperBuilder
 public class Bici extends Veicoli{
 
-	private Integer numeroMarce;
-	private Integer numeroCorone;
-	private String tipoFreno;
-	private String tipoSospensione;
+	private Integer marce;
+	private Integer corone;
+	private String freno;
+	private String sospensione;
 	private Boolean pieghevole;
 	
 
 	
 	@Override
 	public String toString() {
-		return "Bici [Id = " + getId() +", Numero ruote = "+ getNumeroRuote() + ", Tipo alimentazione = " + getTipoAlimentazione() + ", Categoria = " + getCategoria() + ", Colore = " + getColore()
-				+ ", Marca = " + getMarca() +", Modello =  " + getModello() + ", Anno produzione = " + getAnnoProduzione()
-				+ ", Numero marce =  "+getNumeroMarce() +", Numero corone = " + getNumeroCorone()+", Tipo freno = " + getTipoFreno() + ", Tipo Sospensioni = " + getTipoSospensione()+ ",Pieghevole = "+ (getPieghevole() ? "si" : "no") + " ]";
+		return "Bici [Id = " + getId() +", Numero ruote = "+ getNumeroRuote() + ", Tipo alimentazione = " + getAlim() + ", Categoria = " + getCategoria() + ", Colore = " + getColore()
+				+ ", Marca = " + getMarca() +", Modello =  " + getModello() + ", Anno produzione = " + getAnno()
+				+ ", Numero marce =  "+getMarce() +", Numero corone = " + getCorone()+", Tipo freno = " + getFreno() + ", Tipo Sospensioni = " + getSospensione()+ ",Pieghevole = "+ (getPieghevole() ? "si" : "no") + " ]";
 	}
 	
 	

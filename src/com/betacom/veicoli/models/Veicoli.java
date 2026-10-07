@@ -14,13 +14,13 @@ import lombok.SuperBuilder;
 public class Veicoli {
 
 	private Integer id;               //id univoco dell'oggetto
-	private String tipoVeicolo;       //macchina, moto, bici
+	private String tipo;       //macchina, moto, bici
 	private Integer numeroRuote;      //dipende dal tipo veicolo
-	private String tipoAlimentazione; //benzina, diesel, elettrica, gpl, ibrida, manuale,metano
+	private String alim; //benzina, diesel, elettrica, gpl, ibrida, manuale,metano
 	private String categoria;         // strada, fuoristrada, suv, motocross.....
 	private String colore;
 	private String marca;             //fiat,bmw.....
-	private Integer annoProduzione;
+	private Integer anno;
 	private String modello;           //
 	
 

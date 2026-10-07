@@ -37,13 +37,14 @@ public class MotoImplementazione extends VeicoliMotoreAbstract{
 
     	Moto moto =Moto.builder()
    			 .id(SingleTon.getInstance().incrementId())
-   			 .tipoAlimentazione(paramsMoto.get("alim"))
+   			 .tipoVeicolo("moto")
+   			 .alim(paramsMoto.get("alim"))
    			 .categoria(paramsMoto.get("cat"))
    			 .colore(paramsMoto.get("colore"))
    			 .marca(paramsMoto.get("marca"))
    			 .modello(paramsMoto.get("modello"))
-   			 .annoProduzione(Integer.parseInt(paramsMoto.get("anno")))
-                .numeroRuote(Integer.parseInt(paramsMoto.get("ruote")))
+   			 .anno(Integer.parseInt(paramsMoto.get("anno")))
+             .numeroRuote(Integer.parseInt(paramsMoto.get("ruote")))
    	         .targa(paramsMoto.get("targa"))
    	         .cc(Integer.parseInt(paramsMoto.get("cc")))
    	         .build();
