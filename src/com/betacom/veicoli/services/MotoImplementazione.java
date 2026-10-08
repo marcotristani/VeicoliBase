@@ -37,7 +37,7 @@ public class MotoImplementazione extends VeicoliMotoreAbstract{
 
     	Moto moto =Moto.builder()
    			 .id(SingleTon.getInstance().incrementId())
-   			 .tipoVeicolo("moto")
+   			 .tipo("moto")
    			 .alim(paramsMoto.get("alim"))
    			 .categoria(paramsMoto.get("cat"))
    			 .colore(paramsMoto.get("colore"))

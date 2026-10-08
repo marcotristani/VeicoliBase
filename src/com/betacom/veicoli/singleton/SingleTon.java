@@ -43,11 +43,11 @@ public class SingleTon {
 		return listVeicoli;
 	}
 	
-	public boolean accettaTarga(String Targa) {
-		if(listTarghe.contains(Targa)) {
+	public boolean accettaTarga(String targa) {
+		if(listTarghe.contains(targa)) {
 			return false;
 		}else {
-			listTarghe.add(Targa);
+			listTarghe.add(targa);
 			return true;
 		}
 		

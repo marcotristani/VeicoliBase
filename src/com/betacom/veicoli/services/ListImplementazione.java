@@ -26,7 +26,7 @@ public class ListImplementazione {
 			map.put("tipo",paramsVeicolo[POSIZIONETIPOVEICOLO]);
 		    for(int i = POSIZIONETIPOVEICOLO + 1; i<paramsVeicolo.length; i++) {
 			    String[] element = paramsVeicolo[i].split("=");
-			    map.put(element[0].trim(), element[1].trim());
+			    map.put(element[0].trim().toLowerCase(), element[1].trim().toLowerCase());
 		    }
 
 
@@ -85,10 +85,7 @@ public class ListImplementazione {
 	
 	public void printVeicoli(List<Veicoli> veicoli, String paramsFilter) {
 		String[] filtro = paramsFilter.split("=");
-		log.info(filtro[0].trim());
-		log.info(filtro[1].trim());
 		List<Veicoli> listaVeicoliFiltrata = filtraListaDinamica(veicoli, filtro[0].trim().toLowerCase(), filtro[1].trim().toLowerCase());
-
 		printVeicoli(listaVeicoliFiltrata);
 
 	}

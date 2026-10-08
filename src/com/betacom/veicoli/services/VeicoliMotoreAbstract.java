@@ -10,6 +10,8 @@ import com.betacom.veicoli.utilities.Utilities;
 public abstract class VeicoliMotoreAbstract extends VeicoloAbstract{
 
 	public static final List<String> parametriVeicoliMotore = List.of("targa", "cc");
+	
+	private static final String REGEX_TARGA = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
 
 	public void addToList(Map<String, String> paramsVeicolo) {
 		
@@ -30,10 +32,12 @@ public abstract class VeicoliMotoreAbstract extends VeicoloAbstract{
 			
 	}
 
-	public void verificaTarga(String Targa) {
-		Boolean verify = SingleTon.getInstance().accettaTarga(Targa);
-		if (!verify) {
-			throw new AcademyException("Targa già presente :" + Targa);
+	public static void verificaTarga(String targa) {
+		if(!targa.toUpperCase().matches(REGEX_TARGA)) {
+			throw new AcademyException("Formato targa non valido :" + targa);
+			}
+		if (!SingleTon.getInstance().accettaTarga(targa.toUpperCase())) {
+			throw new AcademyException("Targa già presente :" + targa);
 		}
 	}
 }
