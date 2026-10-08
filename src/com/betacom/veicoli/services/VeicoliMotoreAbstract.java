@@ -9,7 +9,7 @@ import com.betacom.veicoli.utilities.Utilities;
 
 public abstract class VeicoliMotoreAbstract extends VeicoloAbstract{
 
-	public static final List<String> parametriVeicoliMotore = List.of("targa", "cc");
+	public static final List<String> PARAMETRI_VEICOLO_MOTORE = List.of("targa", "cc");
 	
 	private static final String REGEX_TARGA = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
 
@@ -21,10 +21,11 @@ public abstract class VeicoliMotoreAbstract extends VeicoloAbstract{
 		
 		super.controlVeicoloBase(paramsVeicoloMotore);
 		//Verifico se i parametri sono stati inseriti
-		for(String param : parametriVeicoliMotore) {
-			if(!paramsVeicoloMotore.containsKey(param))
-				throw new AcademyException("parametro " + param + " non inserito");
-		}
+			PARAMETRI_VEICOLO_MOTORE.forEach(param ->{
+				if(!paramsVeicoloMotore.containsKey(param))
+					throw new AcademyException("parametro " + param + " non inserito");
+			}			
+		);
 
     	verificaTarga(paramsVeicoloMotore.get("targa"));
     	new Utilities().verifyConversionStringToInt(paramsVeicoloMotore.get("cc"));

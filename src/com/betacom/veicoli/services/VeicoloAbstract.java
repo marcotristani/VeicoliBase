@@ -12,7 +12,7 @@ import com.betacom.veicoli.utilities.Utilities;
 
 public abstract class VeicoloAbstract{
 	
-	public static final List<String> parametriComuni = List.of("ruote", "alim", "cat", "colore", "marca", "modello", "anno");
+	public static final List<String> PARAMETRI_COMUNI = List.of("ruote", "alim", "cat", "colore", "marca", "modello", "anno");
 
 	public void addToList(Map<String, String> paramsVeicolo) {
 		
@@ -21,10 +21,11 @@ public abstract class VeicoloAbstract{
 	public void controlVeicoloBase(Map<String, String> paramsVeicolo) {
 		
 		//Verifico se i parametri sono stati inseriti
-		for(String param : parametriComuni) {
-			if(!paramsVeicolo.containsKey(param))
-				throw new AcademyException("parametro " + param + " non inserito");
-		}
+			PARAMETRI_COMUNI.forEach(param -> {
+				if(!paramsVeicolo.containsKey(param))
+					throw new AcademyException("parametro " + param + " non inserito");
+			}
+			);
 
 		//verifico i parametri numerici se sono veramente numeri
 	    	new Utilities().verifyConversionStringToInt(paramsVeicolo.get("ruote"));

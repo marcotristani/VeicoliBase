@@ -1,9 +1,12 @@
 package com.betacom.veicoli.services;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.betacom.veicoli.exception.AcademyException;
@@ -31,8 +34,8 @@ public class ListImplementazione {
 
 
 			try {
-				VeicoloAbstract ex = (VeicoloAbstract) loadImplementazione(map.get("tipo"));
-				addToListOperation(ex, map);
+				VeicoloAbstract add = (VeicoloAbstract) loadImplementazione(map.get("tipo"));
+				addToListOperation(add, map);
 
 			} catch (Exception e) {
 				log.error("error found {}", e.getMessage());
@@ -83,12 +86,42 @@ public class ListImplementazione {
 
 	}
 	
-	public void printVeicoli(List<Veicoli> veicoli, String paramsFilter) {
-		String[] filtro = paramsFilter.split("=");
-		List<Veicoli> listaVeicoliFiltrata = filtraListaDinamica(veicoli, filtro[0].trim().toLowerCase(), filtro[1].trim().toLowerCase());
+	public void printVeicoli(List<Veicoli> veicoli, String[] paramsFilter) {
+		Map<String, String> mapFiltri = new HashMap<String, String>();
+	    for(int i = 1; i<paramsFilter.length; i++) {
+		    String[] element = paramsFilter[i].split("=");
+		    mapFiltri.put(element[0].trim().toLowerCase(), element[1].trim().toLowerCase());
+	    }
+	    
+	    List<Veicoli> listaVeicoliFiltrata = veicoli;
+		for(String item:mapFiltri.keySet()) {
+			 listaVeicoliFiltrata = filtraListaDinamica(listaVeicoliFiltrata, item.trim().toLowerCase(), mapFiltri.get(item).trim().toLowerCase());
+
+		}
+		//List<Veicoli> listaVeicoliFiltrata = filtraListaDinamica(veicoli, filtro[0].trim().toLowerCase(), filtro[1].trim().toLowerCase());
 		printVeicoli(listaVeicoliFiltrata);
 
 	}
+	
+	/*
+	public List<Veicoli> filtraMarca (List<Veicoli> lista, String valoreMarca){
+		return lista.stream().filter(param -> param.getMarca().equals(valoreMarca)).collect(Collectors.toList());
+	}
+	
+	public List<Veicoli> filtraModello (List<Veicoli> lista, String valoreModello){
+		return lista.stream().filter(param -> param.getModello().equals(valoreModello)).collect(Collectors.toList());
+	}
+	public List<Veicoli> filtraColore (List<Veicoli> lista, String valoreColore){
+		return lista.stream().filter(param -> param.getColore().equals(valoreColore)).collect(Collectors.toList());
+	}
+	public List<Veicoli> filtraTipo (List<Veicoli> lista, String valoreTipo){
+		return lista.stream().filter(param -> param.getTipo().equals(valoreTipo)).collect(Collectors.toList());
+	}
+	public List<Veicoli> filtraCategoria (List<Veicoli> lista, String valoreCategoria){
+		return lista.stream().filter(param -> param.getModello().equals(valoreCategoria)).collect(Collectors.toList());
+	}
+	*/
+	
 	
 	
 	public List<Veicoli> filtraListaDinamica(List<Veicoli> lista, String nomeAttributo, String valoreDaCercare) {
@@ -98,7 +131,7 @@ public class ListImplementazione {
 	    return lista.stream()
 	            .filter(veicolo -> {
 	        
-	                // PRENDOLA CLASSE REALE DELL'OGGETTO CORRENTE 
+	                // PRENDO LA CLASSE REALE DELL'OGGETTO CORRENTE 
 	                Class<?> classeVeicoloCorrente = veicolo.getClass();
 
 	                try {

@@ -37,7 +37,7 @@ public class StartVeicolo {
 			}
 			case LIST ->{
 				if(params.length>1)
-				         new ListImplementazione().printVeicoli(SingleTon.getInstance().getListVeicoli(),params[1]);
+				         new ListImplementazione().printVeicoli(SingleTon.getInstance().getListVeicoli(),params);
 				else 
 			         new ListImplementazione().printVeicoli(SingleTon.getInstance().getListVeicoli());
 
